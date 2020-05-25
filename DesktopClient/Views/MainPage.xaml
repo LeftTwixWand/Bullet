@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="DesktopClient.MainPage"
+    x:Class="DesktopClient.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DesktopClient"
+    xmlns:local="using:DesktopClient.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"

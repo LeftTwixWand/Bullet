@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DesktopClient.Views;
+using DesktopClient.Services;
 
 namespace DesktopClient
 {
@@ -23,14 +15,35 @@ namespace DesktopClient
     sealed partial class App : Application
     {
         /// <summary>
+        /// Activation service object
+        /// </summary>
+        private Lazy<ActivationService> activationService;
+
+        /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
             this.InitializeComponent();
+
+            // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
+            activationService = new Lazy<ActivationService>(CreateActivationService);
+
             this.Suspending += OnSuspending;
         }
+
+        /// <summary>
+        /// Create new activation service
+        /// </summary>
+        /// <returns>New activation service object</returns>
+        private ActivationService CreateActivationService() => new ActivationService(this, typeof(MainPage), new Lazy<UIElement>(CreateShell));
+
+        /// <summary>
+        /// Create new shell page
+        /// </summary>
+        /// <returns>New shell page</returns>
+        private UIElement CreateShell() => new ShellPage();
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -50,26 +63,33 @@ namespace DesktopClient
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e != null)
                 {
-                    //TODO: Load state from previously suspended application
+                    if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                    {
+                        //TODO: Load state from previously suspended application
+                    }
                 }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
+            if (e != null)
             {
-                if (rootFrame.Content == null)
+                if (e.PrelaunchActivated == false)
                 {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    if (rootFrame.Content == null)
+                    {
+                        // When the navigation stack isn't restored navigate to the first page,
+                        // configuring the new page by passing required information as a navigation
+                        // parameter
+                        rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    }
+
+                    // Ensure the current window is active
+                    Window.Current.Activate();
                 }
-                // Ensure the current window is active
-                Window.Current.Activate();
             }
         }
 
@@ -93,7 +113,8 @@ namespace DesktopClient
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+
+            // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
     }
