@@ -1,4 +1,5 @@
 ﻿using DesktopClient.Activation;
+using DesktopClient.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,9 @@ namespace DesktopClient.Services
             {
                 await InitializeAsync();
 
+                //if Storrage is empty
+                shell = new Lazy<UIElement>(new AuthorizationPage());
+
                 // Do not repeat app initialization when the Window already has content, just ensure that the window is active
                 if (Window.Current.Content == null)
                 {
@@ -104,7 +108,7 @@ namespace DesktopClient.Services
                 await activationHandler.HandleAsync(activationArgs);
             }
 
-            if (IsInteractive(activationArgs))
+            if (IsInteractive(activationArgs) && Window.Current.Content.GetType() != typeof(AuthorizationPage))
             {
                 var defaultHandler = new DefaultActivationHandler(defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs))
