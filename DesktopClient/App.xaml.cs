@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DesktopClient.Views;
 using DesktopClient.Services;
+using System.Runtime.CompilerServices;
 
 namespace DesktopClient
 {
@@ -18,6 +19,11 @@ namespace DesktopClient
         /// Activation service object
         /// </summary>
         private Lazy<ActivationService> activationService;
+
+        /// <summary>
+        /// Activation service property
+        /// </summary>
+        private ActivationService ActivationService => activationService.Value;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -50,8 +56,10 @@ namespace DesktopClient
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+            /*
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -91,6 +99,17 @@ namespace DesktopClient
                     Window.Current.Activate();
                 }
             }
+            */
+
+            if (!e.PrelaunchActivated)
+            {
+                await ActivationService.ActivateAsync(e);
+            }
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            await ActivationService.ActivateAsync(args);
         }
 
         /// <summary>

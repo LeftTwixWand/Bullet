@@ -84,9 +84,9 @@ namespace DesktopClient.Services
         /// Tasks after activation
         /// </summary>
         /// <returns>Completed tasks</returns>
-        private Task StartupAsync()
+        private async Task StartupAsync()
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -136,10 +136,9 @@ namespace DesktopClient.Services
         /// <para>The splash screen is shown while this code runs</para>
         /// </summary>
         /// <returns>Completed task</returns>
-        private Task InitializeAsync()
+        private async Task InitializeAsync()
         {
-            //await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
-            return Task.CompletedTask;
+            await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace DesktopClient.Helpers
     /// <summary>
     /// Class to notify xaml code changes
     /// </summary>
-    internal class Observable : INotifyPropertyChanged
+    public class Observable : INotifyPropertyChanged
     {
         /// <summary>
         /// Main event

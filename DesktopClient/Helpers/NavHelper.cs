@@ -1,13 +1,13 @@
 ﻿using System;
+using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace DesktopClient.Helpers
 {
     /// <summary>
     /// Navigation helper class
     /// </summary>
-    internal static class NavHelper
+    public class NavHelper
     {
         /// <summary>
         /// Dependency property 
@@ -23,14 +23,17 @@ namespace DesktopClient.Helpers
         /// </summary>
         /// <param name="item">Navigation view item, which call event</param>
         /// <returns>Type of the page, you'll navigated to</returns>
-        public static Type GetNavigateTo(NavigationViewItem item) => (Type)item.GetValue(NavigateToProperty);
+        public static Type GetNavigateTo(NavigationViewItem item)
+        {
+            return (Type)item.GetValue(NavigateToProperty);
+        }
 
         /// <summary>
         /// Go to next page
         /// </summary>
         /// <param name="item">Navigation view, whith cals the event</param>
         /// <param name="value">Page type you'll navigate</param>
-        public static void SetNavigatedTo(NavigationViewItem item, Type value)
+        public static void SetNavigateTo(NavigationViewItem item, Type value)
         {
             item.SetValue(NavigateToProperty, value);
         }
