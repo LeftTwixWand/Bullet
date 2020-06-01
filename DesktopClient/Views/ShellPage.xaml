@@ -24,7 +24,11 @@
                           SelectedItem="{x:Bind ViewModel.SelectedItem, Mode=OneWay}"
                           Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
-            <winui:NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="views:MainPage" />
+            <winui:NavigationViewItem x:Uid="Shell_Main" Content="Profile" helpers:NavHelper.NavigateTo="views:ProfilePage" >
+                <winui:NavigationViewItem.Icon>
+                    <SymbolIcon Symbol="Contact"/>
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="ItemInvoked">

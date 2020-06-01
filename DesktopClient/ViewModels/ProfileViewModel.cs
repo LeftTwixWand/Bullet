@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DesktopClient.ViewModels
 {
-    public class MainViewModel : Observable
+    public class ProfileViewModel : Observable
     {
-        public MainViewModel()
+        public ProfileViewModel()
         {
         }
     }

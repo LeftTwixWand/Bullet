@@ -37,6 +37,18 @@ namespace DesktopClient.Services
         /// </summary>
         private object lastActivationArgs;
 
+        private bool isAutherized = false;
+
+        public bool IsAutherized
+        {
+            get => isAutherized;
+            set
+            {
+                isAutherized = value;
+                ActivateAsync(lastActivationArgs).GetAwaiter().GetResult();
+            }
+        }
+
         /// <summary>
         /// Constructor of <see cref="ActivationService"/>
         /// </summary>
@@ -61,8 +73,15 @@ namespace DesktopClient.Services
             {
                 await InitializeAsync();
 
-                //if Storrage is empty
-                shell = new Lazy<UIElement>(new AuthorizationPage());
+                if (!IsAutherized)
+                {
+                    shell = new Lazy<UIElement>(new AuthorizationPage());
+                }
+                else
+                {
+                    shell = new Lazy<UIElement>(new ShellPage());
+                    Window.Current.Content = shell?.Value ?? new Frame();
+                }
 
                 // Do not repeat app initialization when the Window already has content, just ensure that the window is active
                 if (Window.Current.Content == null)

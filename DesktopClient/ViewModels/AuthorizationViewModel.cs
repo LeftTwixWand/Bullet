@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 
 namespace DesktopClient.ViewModels
 {
@@ -17,7 +18,7 @@ namespace DesktopClient.ViewModels
 
         private void ButtonClick()
         {
-            Debug.WriteLine("Work!!!");
+            ((App)Application.Current).ActivationService.IsAutherized = true;
         }
 
         public AuthorizationViewModel()
