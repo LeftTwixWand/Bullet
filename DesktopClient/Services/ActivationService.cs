@@ -37,6 +37,8 @@ namespace DesktopClient.Services
         /// </summary>
         private object lastActivationArgs;
 
+        private bool isSplash = true;
+
         private bool isAutherized = false;
 
         public bool IsAutherized
@@ -62,6 +64,12 @@ namespace DesktopClient.Services
             this.defaultNavItem = defaultNavItem;
         }
 
+        public async Task TurnOfSplash()
+        {
+            isSplash = false;
+            await ActivateAsync(lastActivationArgs);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -73,18 +81,25 @@ namespace DesktopClient.Services
             {
                 await InitializeAsync();
 
-                if (!IsAutherized)
+                if (isSplash)
                 {
-                    shell = new Lazy<UIElement>(new AuthorizationPage());
+                    shell = new Lazy<UIElement>(new GradientPage());
                 }
                 else
                 {
-                    shell = new Lazy<UIElement>(new ShellPage());
-                    Window.Current.Content = shell?.Value ?? new Frame();
+                    if (!IsAutherized)
+                    {
+                        shell = new Lazy<UIElement>(new AuthorizationPage());
+                    }
+                    else
+                    {
+                        shell = new Lazy<UIElement>(new ShellPage());
+                        Window.Current.Content = shell?.Value ?? new Frame();
+                    }
                 }
 
                 // Do not repeat app initialization when the Window already has content, just ensure that the window is active
-                if (Window.Current.Content == null)
+                if (Window.Current.Content == null || Window.Current.Content.GetType() == typeof(GradientPage))
                 {
                     // Create a Shell or Frame to act as the navigation context
                     Window.Current.Content = shell?.Value ?? new Frame();
@@ -127,7 +142,7 @@ namespace DesktopClient.Services
                 await activationHandler.HandleAsync(activationArgs);
             }
 
-            if (IsInteractive(activationArgs) && Window.Current.Content.GetType() != typeof(AuthorizationPage))
+            if (IsInteractive(activationArgs) && Window.Current.Content.GetType() != typeof(AuthorizationPage) && Window.Current.Content.GetType() != typeof(GradientPage))
             {
                 var defaultHandler = new DefaultActivationHandler(defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs))

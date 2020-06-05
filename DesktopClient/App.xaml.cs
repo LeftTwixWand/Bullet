@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using DesktopClient.Views;
 using DesktopClient.Services;
+using System.Threading.Tasks;
 
 namespace DesktopClient
 {
@@ -57,12 +58,14 @@ namespace DesktopClient
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            if (!e.PrelaunchActivated)
+            if (e.PrelaunchActivated)
             {
-                await ActivationService.ActivateAsync(e);
+                return;
             }
-        }
 
+            await ActivationService.ActivateAsync(e);
+        }
+        
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
