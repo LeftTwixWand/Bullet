@@ -5,12 +5,14 @@
     xmlns:local="using:DesktopClient.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:helper="using:DesktopClient.Helpers" xmlns:xaml="using:Windows.UI.Xaml"
+    xmlns:helper="using:DesktopClient.Helpers" 
+    xmlns:xaml="using:Windows.UI.Xaml" xmlns:language="using:Core.Helpers"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
     Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
     <Page.Resources>
         <helper:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="ElementTheme" />
+        <helper:LanguageConverter x:Key="LangConverter" />
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
@@ -49,6 +51,33 @@
                         GroupName="AppTheme" Content="Windows default">
                         <RadioButton.CommandParameter>
                             <xaml:ElementTheme>Default</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <TextBlock x:Uid="Settings_Language" Text="Choose language:" />
+
+                <StackPanel Margin="{StaticResource XSmallTopMargin}" Orientation="Horizontal">
+                    <RadioButton
+                        x:Uid="Settings_Language_English"
+                        Command="{x:Bind ViewModel.SwitchLanguageCommand}"
+                        IsChecked="{x:Bind ViewModel.LanguageEnum, Converter={StaticResource LangConverter}, ConverterParameter=English, Mode=OneWay}"
+                        FontSize="15"
+                        GroupName="AppLanguage" Content="English">
+                        <RadioButton.CommandParameter>
+                            <language:LanguageEnum>English</language:LanguageEnum>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        x:Uid="Settings_Language_Russian"
+                        Command="{x:Bind ViewModel.SwitchLanguageCommand}"
+                        IsChecked="{x:Bind ViewModel.LanguageEnum, Converter={StaticResource LangConverter}, ConverterParameter=Russian, Mode=OneWay}"
+                        FontSize="15"
+                        GroupName="AppLanguage" Content="Russian">
+                        <RadioButton.CommandParameter>
+                            <language:LanguageEnum>Russian</language:LanguageEnum>
                         </RadioButton.CommandParameter>
                     </RadioButton>
                 </StackPanel>
