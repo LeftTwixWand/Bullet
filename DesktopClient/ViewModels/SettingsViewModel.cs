@@ -1,7 +1,6 @@
 ﻿using DesktopClient.Helpers;
 using DesktopClient.Services;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,6 +9,7 @@ using Windows.UI.Xaml;
 using Core.Helpers;
 using Windows.Globalization;
 using Windows.ApplicationModel.Core;
+using Windows.System;
 
 namespace DesktopClient.ViewModels
 {
@@ -92,10 +92,7 @@ namespace DesktopClient.ViewModels
         {
         }
 
-        private void LinkButton_Click()
-        {
-            Process.Start(new ProcessStartInfo("https://github.com/LeftTwixWand/Bullet") { UseShellExecute = true, Verb = "open" });
-        }
+        private async void LinkButton_Click() => await Launcher.LaunchUriAsync(new Uri("https://github.com/LeftTwixWand/Bullet"));
 
         public async Task InitializeAsync()
         {

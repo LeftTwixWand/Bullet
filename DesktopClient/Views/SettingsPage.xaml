@@ -14,86 +14,88 @@
         <helper:EnumToBooleanConverter x:Key="EnumToBooleanConverter" EnumType="ElementTheme" />
         <helper:LanguageConverter x:Key="LangConverter" />
     </Page.Resources>
+    <ScrollViewer>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
-        <StackPanel
+        <Grid Margin="{StaticResource MediumLeftRightMargin}">
+            <StackPanel
             x:Name="ContentArea">
-            <TextBlock x:Uid="Settings_Personalization" Text="Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
-            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock x:Uid="Settings_Theme" Text="Choose theme:" />
+                <TextBlock x:Uid="Settings_Personalization" Text="Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <TextBlock x:Uid="Settings_Theme" Text="Choose theme:" />
 
-                <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                    <RadioButton
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                        <RadioButton
                         x:Uid="Settings_Theme_Light"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme" Content="Ligth">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Light</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                    <RadioButton
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Light</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
                         x:Uid="Settings_Theme_Dark"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme" Content="Dark">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Dark</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                    <RadioButton
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Dark</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
                         x:Uid="Settings_Theme_Default"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme" Content="Windows default">
-                        <RadioButton.CommandParameter>
-                            <xaml:ElementTheme>Default</xaml:ElementTheme>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
+                            <RadioButton.CommandParameter>
+                                <xaml:ElementTheme>Default</xaml:ElementTheme>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock x:Uid="Settings_Language" Text="Choose language:" />
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <TextBlock x:Uid="Settings_Language" Text="Choose language:" />
 
-                <StackPanel Margin="{StaticResource XSmallTopMargin}" Orientation="Horizontal">
-                    <RadioButton
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}" Orientation="Horizontal">
+                        <RadioButton
                         x:Uid="Settings_Language_English"
                         Command="{x:Bind ViewModel.SwitchLanguageCommand}"
                         IsChecked="{x:Bind ViewModel.LanguageEnum, Converter={StaticResource LangConverter}, ConverterParameter=English, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppLanguage" Content="English">
-                        <RadioButton.CommandParameter>
-                            <language:LanguageEnum>English</language:LanguageEnum>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
-                    <RadioButton
+                            <RadioButton.CommandParameter>
+                                <language:LanguageEnum>English</language:LanguageEnum>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                        <RadioButton
                         x:Uid="Settings_Language_Russian"
                         Command="{x:Bind ViewModel.SwitchLanguageCommand}"
                         IsChecked="{x:Bind ViewModel.LanguageEnum, Converter={StaticResource LangConverter}, ConverterParameter=Russian, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppLanguage" Content="Russian">
-                        <RadioButton.CommandParameter>
-                            <language:LanguageEnum>Russian</language:LanguageEnum>
-                        </RadioButton.CommandParameter>
-                    </RadioButton>
+                            <RadioButton.CommandParameter>
+                                <language:LanguageEnum>Russian</language:LanguageEnum>
+                            </RadioButton.CommandParameter>
+                        </RadioButton>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <TextBlock x:Uid="Settings_About" Text="About" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <TextBlock x:Uid="Settings_About" Text="About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
-            <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
-                <TextBlock
+                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+                    <TextBlock
                     x:Uid="Settings_AboutDescription"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{ThemeResource BodyTextBlockStyle}" Text="Программа разработанна студентом группы РПЗ 16 2/9 Горбачёвым Владиславом и находится под лицензией MIT."/>
 
-                <HyperlinkButton x:Uid="Settings_PrivacyTermsLink" Command="{x:Bind ViewModel.LinkCommand}" Content="Source code" Margin="{StaticResource XSmallTopMargin}" />
+                    <HyperlinkButton x:Uid="Settings_PrivacyTermsLink" Command="{x:Bind ViewModel.LinkCommand}" Content="Source code" Margin="{StaticResource XSmallTopMargin}" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

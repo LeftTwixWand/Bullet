@@ -16,7 +16,7 @@ namespace DesktopClient.ViewModels
 
         public ICommand ButtonClickCommand => buttonClickCommand ?? (buttonClickCommand = new RelayCommand(ButtonClick));
 
-        private void ButtonClick()
+        private async void ButtonClick()
         {
             ((App)Application.Current).ActivationService.IsAutherized = true;
         }
