@@ -131,6 +131,7 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\OrleansClient.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\ContentGridViewModel.cs" />

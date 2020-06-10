@@ -1,4 +1,5 @@
 ﻿using DesktopClient.Helpers;
+using DesktopClient.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,6 +19,8 @@ namespace DesktopClient.ViewModels
 
         private async void ButtonClick()
         {
+            OrleansClient.InitializeUser("LeftTwixWand");
+            Debug.WriteLine(await OrleansClient.User.GetLogin());
             ((App)Application.Current).ActivationService.IsAutherized = true;
         }
 

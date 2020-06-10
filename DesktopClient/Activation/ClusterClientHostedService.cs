@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Orleans;
 using Orleans.Runtime;
 using Windows.UI.Xaml;
+using DesktopClient.Services;
 
 namespace DesktopClient.Activation
 {
@@ -14,7 +15,7 @@ namespace DesktopClient.Activation
 
         public ClusterClientHostedService()
         {
-            ((App)Application.Current).Client = new ClientBuilder().UseLocalhostClustering().Build();
+            OrleansClient.Client = new ClientBuilder().UseLocalhostClustering().Build();
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -22,7 +23,7 @@ namespace DesktopClient.Activation
             int attempt = 0, maxAttempts = 100;
             TimeSpan delay = TimeSpan.FromSeconds(1);
 
-            return ((App)Application.Current).Client.Connect(async error =>
+            return OrleansClient.Client.Connect(async error =>
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
@@ -40,6 +41,7 @@ namespace DesktopClient.Activation
                     {
                         return false;
                     }
+
                     return true;
                 }
                 else
@@ -53,7 +55,7 @@ namespace DesktopClient.Activation
         {
             try
             {
-                await ((App)Application.Current).Client.Close();
+                await OrleansClient.Client.Close();
             }
             catch (OrleansException error)
             {

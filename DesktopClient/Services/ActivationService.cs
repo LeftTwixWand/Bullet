@@ -124,7 +124,6 @@ namespace DesktopClient.Services
         /// <returns>Completed tasks</returns>
         private async Task StartupAsync()
         {
-            //((App)Application.Current).builder.Build().StartAsync().GetAwaiter().GetResult();
             await Task.CompletedTask;
         }
 

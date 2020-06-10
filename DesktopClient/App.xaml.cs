@@ -21,9 +21,6 @@ namespace DesktopClient
     /// </summary>
     sealed partial class App : Application
     {
-        
-        public IClusterClient Client;
-
         public IHostBuilder builder = new HostBuilder().ConfigureServices(service =>
         {
             service.AddSingleton<ClusterClientHostedService>();
@@ -54,8 +51,6 @@ namespace DesktopClient
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
 
             builder.Build().StartAsync().GetAwaiter().GetResult();
-            IUserGrain user = Client.GetGrain<IUserGrain>("LeftTwixWand");
-            var response = user.SayHello().GetAwaiter().GetResult();
 
             activationService = new Lazy<ActivationService>(CreateActivationService);
 
