@@ -48,6 +48,19 @@ namespace Grains
             this.State.ProfileImage = data;
             await WriteStateAsync();
         }
+
+        public async Task<bool> Register(string name, string password)
+        {
+            if (this.State.Name == null && this.State.Password == null)
+            {
+                this.State.Name = name;
+                this.State.Password = password;
+                await this.WriteStateAsync();
+                return true;
+            }
+
+            return false;
+        }
     }
 
     public class Archive

@@ -28,6 +28,8 @@ namespace Interfaces
 
         Task<bool> SetPassword(string newPassword, string oldPassword);
 
+        Task<bool> Register(string name, string password);
+
         // Task<IEnumerable<byte[]>> GetAvatars();
 
         // Task<IEnumerable<IChatGrain>> GetChats();

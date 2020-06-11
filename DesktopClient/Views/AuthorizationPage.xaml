@@ -10,26 +10,26 @@
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
     Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
-    
-    
+
+
     <ScrollViewer VerticalScrollBarVisibility="Auto" TabIndex="1" IsTabStop="True">
         <Grid Height="500" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Rectangle Canvas.ZIndex="-1" RadiusY="10" RadiusX="10" Fill="{ThemeResource SystemControlAcrylicElementBrush}"/>
             <Rectangle Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,80"  RadiusY="10" RadiusX="10" Canvas.ZIndex="0" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}" Stroke="{ThemeResource SystemControlAccentDark2AcrylicWindowAccentDark2MediumHighBrush}" />
 
             <Grid VerticalAlignment="Top" Margin="35,180,35,0" Height="280">
-                <Pivot>
+                <Pivot SelectedIndex="{x:Bind ViewModel.SelectdPivotIndex, Mode=TwoWay}">
                     <PivotItem Header="LOGIN">
                         <StackPanel VerticalAlignment="Top" Margin="15, 35">
-                            <TextBox Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Login" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
-                            <PasswordBox Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Password" FontSize="18" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" TabIndex="3"/>
+                            <TextBox Margin="0,10" Text="{x:Bind ViewModel.Login, Mode=TwoWay}" FontFamily="Champagne &amp; Limousines" PlaceholderText="Login" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
+                            <PasswordBox Margin="0,10" Password="{x:Bind ViewModel.Password, Mode=TwoWay}" FontFamily="Champagne &amp; Limousines" PlaceholderText="Password" FontSize="18" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" TabIndex="3"/>
                         </StackPanel>
                     </PivotItem>
                     <PivotItem Header="REGISTRATION">
                         <StackPanel VerticalAlignment="Top" Margin="15,0">
-                            <TextBox Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Name" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
-                            <TextBox Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Login" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
-                            <PasswordBox Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Password" FontSize="18" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" TabIndex="3"/>
+                            <TextBox Text="{x:Bind ViewModel.Name, Mode=TwoWay}" Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Name" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
+                            <TextBox Text="{x:Bind ViewModel.Login, Mode=TwoWay}" Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Login" FontSize="18" TabIndex="2" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"  />
+                            <PasswordBox Password="{x:Bind ViewModel.Password, Mode=TwoWay}" Margin="0,10" FontFamily="Champagne &amp; Limousines" PlaceholderText="Password" FontSize="18" BorderBrush="{ThemeResource SystemAccentColor}" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" TabIndex="3"/>
                         </StackPanel>
                     </PivotItem>
                 </Pivot>
@@ -60,6 +60,6 @@
                     </ic:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </Button>
-        </Grid>        
+        </Grid>
     </ScrollViewer>
 </Page>
