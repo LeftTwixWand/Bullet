@@ -36,7 +36,7 @@ namespace Server
                             options.AccountKey = "2xhxMTvvXcu1E7UbAAnmRoJidvRDaPgEbjkZPjpSVRzeQLiYWQT1CktcA14gfWdZUFfu7ETRG4dYY8HyhUcTog==";
                             options.DB = "test";
                             //options.Collection = "Connector";
-                            options.DropDatabaseOnInit = true; // Comment it
+                            // options.DropDatabaseOnInit = true; // Comment it
                             options.CanCreateResources = true;
                         })
                         .Configure<ClusterOptions>(options =>

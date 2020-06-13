@@ -34,7 +34,7 @@ namespace DesktopClient.Views
         {
             base.OnNavigatedTo(e);
 
-            await ViewModel.LoadDataAsync();
+            //await ViewModel.LoadDataAsync();
         }
     }
 }

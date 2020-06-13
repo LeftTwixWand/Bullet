@@ -17,8 +17,7 @@
     <ScrollViewer>
 
         <Grid Margin="{StaticResource MediumLeftRightMargin}">
-            <StackPanel
-            x:Name="ContentArea">
+            <StackPanel x:Name="ContentArea">
                 <TextBlock x:Uid="Settings_Personalization" Text="Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock x:Uid="Settings_Theme" Text="Choose theme:" />

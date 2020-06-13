@@ -7,7 +7,7 @@ using Orleans.Providers;
 namespace Grains
 {
     [StorageProvider]
-    public class UserGrain : Grain<Archive>, IUserGrain
+    public class UserGrain : Grain<UserArchive>, IUserGrain, IFriendGrain
     {
         public Task<string> GetLogin() => Task.FromResult(this.GetPrimaryKeyString());
 
@@ -63,7 +63,7 @@ namespace Grains
         }
     }
 
-    public class Archive
+    public class UserArchive
     {
         public string Name { get; set; }
 

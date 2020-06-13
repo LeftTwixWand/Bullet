@@ -11,7 +11,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <controls:AdaptiveGridView
+        <!--<controls:AdaptiveGridView
             Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyContentGrid"
@@ -20,6 +20,6 @@
             IsItemClickEnabled="True"
             ItemClickCommand="{x:Bind ViewModel.ItemClickComamnd}">
             
-        </controls:AdaptiveGridView>
+        </controls:AdaptiveGridView>-->
     </Grid>
 </Page>

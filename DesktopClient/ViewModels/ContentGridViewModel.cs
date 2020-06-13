@@ -15,29 +15,29 @@ namespace DesktopClient.ViewModels
 {
     public class ContentGridViewModel : Observable
     {
-        private ICommand itemClickComamnd;
+        //private ICommand itemClickComamnd;
 
-        public ICommand ItemClickComamnd => itemClickComamnd ?? (itemClickComamnd = new RelayCommand<UserModel>(OnItemClick));
+        //public ICommand ItemClickComamnd => itemClickComamnd ?? (itemClickComamnd = new RelayCommand<UserModel>(OnItemClick));
 
-        public ObservableCollection<UserModel> Source { get; } = new ObservableCollection<UserModel>(); 
+        //public ObservableCollection<UserModel> Source { get; } = new ObservableCollection<UserModel>(); 
 
-        private void OnItemClick(UserModel item)
-        {
-            if (item != null)
-            {
-                NavigationService.Frame.SetListDataItemForNextConnectedAnimation(item);
-                NavigationService.Navigate<ProfilePage>(item);
-            }
-        }
+        //private void OnItemClick(UserModel item)
+        //{
+        //    if (item != null)
+        //    {
+        //        NavigationService.Frame.SetListDataItemForNextConnectedAnimation(item);
+        //        NavigationService.Navigate<ProfilePage>(item);
+        //    }
+        //}
 
-        public async Task LoadDataAsync()
-        {
-            await Task.Run(() =>
-            {
-                Source.Clear();
-                Source.Add(new UserModel() { Username = "LeftTwixWand" });
-                return Task.CompletedTask;
-            });
-        }
+        //public async Task LoadDataAsync()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        Source.Clear();
+        //        Source.Add(new UserModel() { Username = "LeftTwixWand" });
+        //        return Task.CompletedTask;
+        //    });
+        //}
     }
 }

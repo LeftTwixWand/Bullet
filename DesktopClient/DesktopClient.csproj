@@ -123,6 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
+    <Compile Include="Helpers\ImageToBytesConverter.cs" />
     <Compile Include="Helpers\LanguageConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\Observable.cs" />
@@ -167,6 +168,7 @@
     <Content Include="Assets\avatar.png" />
     <Content Include="Assets\Gradient logo 150px.png" />
     <Content Include="Assets\Gradient logo 88px.png" />
+    <Content Include="Assets\Unknown.jpg" />
     <Content Include="Assets\я на аву.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

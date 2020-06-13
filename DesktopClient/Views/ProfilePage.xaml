@@ -5,29 +5,40 @@
     xmlns:local="using:DesktopClient.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
     Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
-    <!--ThemeResource ApplicationPageBackgroundThemeBrush-->
+    
+    <Page.Resources>
+        <muxc:CommandBarFlyout Placement="Right" x:Name="MyCommandBarFlyout">
+            <AppBarButton Label="Upload new" Icon="Upload" ToolTipService.ToolTip="Upload" Command="{x:Bind ViewModel.UploadImageCommand}" />
+            <AppBarButton Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" Command="{x:Bind ViewModel.DeleteImageCommand}" />
+        </muxc:CommandBarFlyout>
+    </Page.Resources>
+
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid>
+        <Grid Margin="{StaticResource MediumLeftRightMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35*"/>
                 <ColumnDefinition Width="65*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="20,20,20,20" >
-                <Image MaxHeight="450" MaxWidth="400" Source="/Assets/я на аву.jpg" />
+            <StackPanel Grid.Column="0" Margin="{StaticResource SmallTopBottomMargin}" >
+                <Button Click="Button_Click" MinHeight="200" MinWidth="150" ContextRequested="Button_ContextRequested" HorizontalAlignment="Center" MaxHeight="450" MaxWidth="400">
+                    <Image x:Name="myProfileImage" Source="{x:Bind ViewModel.ProfileImage, Mode=OneWay}" />
+                </Button>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" MaxHeight="40"/>
-                        <RowDefinition Height="*" MaxHeight="40"/>
-                        <RowDefinition Height="*" MaxHeight="40"/>
-                        <RowDefinition Height="*" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Владислав Горбачёв" TextAlignment="Center" Foreground="{ThemeResource ComboBoxPressedBackgroundThemeBrush}" FontSize="36"/>
-                    <TextBlock Grid.Row="1" Text="@LeftTwixWand" TextAlignment="Center" Foreground="{ThemeResource ComboBoxPressedBackgroundThemeBrush}" FontSize="27"/>
-                    <TextBlock Grid.Row="2" Text="Информация о себе:" Foreground="{ThemeResource ComboBoxPressedBackgroundThemeBrush}" FontSize="22" Margin="0,18,0,0"/>
-                    <TextBlock Grid.Row="3" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" TextWrapping="Wrap" Foreground="{ThemeResource ComboBoxPressedBackgroundThemeBrush}" FontSize="20"/>
+                    <TextBlock Grid.Row="0" Text="Владислав Горбачёв" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                    <TextBlock Grid.Row="1" Text="@LeftTwixWand" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                    <TextBlock Grid.Row="2" Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                    <TextBlock Grid.Row="3" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"/>
                 </Grid>
             </StackPanel>
         </Grid>

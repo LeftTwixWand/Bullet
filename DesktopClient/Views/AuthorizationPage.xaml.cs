@@ -28,7 +28,7 @@ namespace DesktopClient.Views
         public AuthorizationPage()
         {
             this.InitializeComponent();
-            DataContext = ViewModel;
+            this.DataContext = ViewModel;
         }
     }
 }
