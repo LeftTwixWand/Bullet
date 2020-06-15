@@ -14,6 +14,8 @@ namespace Interfaces
 
         Task SetName(string newName);
 
+        Task SetDescription(string description);
+        
         /// <summary>
         /// Returnes current profile picture for current user
         /// </summary>

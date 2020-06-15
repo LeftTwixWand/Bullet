@@ -35,9 +35,43 @@ namespace DesktopClient.Views
             MyCommandBarFlyout.ShowAt(myProfileImage, myOption);
         }
 
+        private void ShowNameMenu(bool isTransient)
+        {
+            FlyoutShowOptions myOption = new FlyoutShowOptions();
+            myOption.ShowMode = isTransient ? FlyoutShowMode.Transient : FlyoutShowMode.Standard;
+            EditNameBarFlyout.ShowAt(nameTextBlock, myOption);
+        }
+
+        private void ShowDescriptionMenu(bool isTransient)
+        {
+            FlyoutShowOptions myOption = new FlyoutShowOptions();
+            myOption.ShowMode = isTransient ? FlyoutShowMode.Transient : FlyoutShowMode.Standard;
+            EditDescriptionBarFlyout.ShowAt(descriptionTextBlock, myOption);
+        }
+
         private void Button_ContextRequested(UIElement sender, ContextRequestedEventArgs args)
         {
             ShowMenu(false);
+        }
+
+        private void NameButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowNameMenu((sender as Button).IsPointerOver);
+        }
+
+        private void NameButton_ContentRequested(UIElement sender, ContextRequestedEventArgs args)
+        {
+            ShowNameMenu(false);
+        }
+
+        private void DescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowDescriptionMenu((sender as Button).IsPointerOver);
+        }
+
+        private void DescriptionButton_ContentRequested(UIElement sender, ContextRequestedEventArgs args)
+        {
+            ShowDescriptionMenu(false);
         }
     }
 }

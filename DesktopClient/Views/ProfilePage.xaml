@@ -9,11 +9,17 @@
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
     Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
-    
+
     <Page.Resources>
         <muxc:CommandBarFlyout Placement="Right" x:Name="MyCommandBarFlyout">
             <AppBarButton Label="Upload new" Icon="Upload" ToolTipService.ToolTip="Upload" Command="{x:Bind ViewModel.UploadImageCommand}" />
             <AppBarButton Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" Command="{x:Bind ViewModel.DeleteImageCommand}" />
+        </muxc:CommandBarFlyout>
+        <muxc:CommandBarFlyout Placement="Right" x:Name="EditNameBarFlyout">
+            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" />
+        </muxc:CommandBarFlyout>
+        <muxc:CommandBarFlyout Placement="Right" x:Name="EditDescriptionBarFlyout">
+            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" />
         </muxc:CommandBarFlyout>
     </Page.Resources>
 
@@ -25,7 +31,7 @@
                 <ColumnDefinition Width="65*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="{StaticResource SmallTopBottomMargin}" >
-                <Button Click="Button_Click" MinHeight="200" MinWidth="150" ContextRequested="Button_ContextRequested" HorizontalAlignment="Center" MaxHeight="450" MaxWidth="400">
+                <Button Click="Button_Click" MinHeight="200" MinWidth="150" Background="Transparent" ContextRequested="Button_ContextRequested" HorizontalAlignment="Center" MaxHeight="450" MaxWidth="400">
                     <Image x:Name="myProfileImage" Source="{x:Bind ViewModel.ProfileImage, Mode=OneWay}" />
                 </Button>
                 <Grid>
@@ -35,10 +41,15 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Владислав Горбачёв" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
-                    <TextBlock Grid.Row="1" Text="@LeftTwixWand" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                    <TextBlock Grid.Row="2" Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}"/>
-                    <TextBlock Grid.Row="3" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"/>
+                    <Button Grid.Row="0" HorizontalAlignment="Center" Background="Transparent" Click="NameButton_Click" ContextRequested="NameButton_ContentRequested">
+                        <TextBlock x:Name="nameTextBlock" Text="{x:Bind ViewModel.Name, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                    </Button>
+                    <TextBlock Grid.Row="1" Text="{x:Bind ViewModel.Login, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                    <TextBlock Grid.Row="2"  Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}" />
+                    <Button Grid.Row="3" HorizontalAlignment="Center" Click="DescriptionButton_Click" ContextRequested="DescriptionButton_ContentRequested" Background="Transparent">
+                        <TextBlock x:Name="descriptionTextBlock" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Description, Mode=OneWay}"/>
+                    </Button>
+                    <!--<TextBox Grid.Row="3" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Description, Mode=TwoWay}" Visibility=""/>-->
                 </Grid>
             </StackPanel>
         </Grid>

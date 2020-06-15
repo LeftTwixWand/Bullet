@@ -11,8 +11,13 @@ namespace DesktopClient.Services
 
         public static IFriendGrain OtherUser { get; set; }
 
-        public static void InitializeUser(string login) => User = Client.GetGrain<IUserGrain>(login);
+        public static string Login { get; set; }
 
+        public static void InitializeUser(string login)
+        {
+            Login = login;
+            User = Client.GetGrain<IUserGrain>(login);
+        }
         public static void InitializeOtherUser(string login) => OtherUser = Client.GetGrain<IFriendGrain>(login);
     }
 }

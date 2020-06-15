@@ -36,6 +36,22 @@ namespace DesktopClient.ViewModels
             set { Set(ref descriprion, value); }
         }
 
+        private bool isNameEditing = false;
+
+        public bool IsNameEditing
+        {
+            get => isNameEditing;
+            set { Set(ref isNameEditing, value); }
+        }
+
+        private bool isDescriptionEditing = false;
+
+        public bool IsDescriptionEditing
+        {
+            get => isDescriptionEditing;
+            set { Set(ref isDescriptionEditing, value); }
+        }
+
         private BitmapImage profileImage;
 
         public BitmapImage ProfileImage
@@ -93,12 +109,26 @@ namespace DesktopClient.ViewModels
 
         public ProfileViewModel()
         {
+
         }
 
         public async void Initialize()
         {
-            ProfileImage = await ImageToBytesConverter.ToImage(await OrleansClient.User.GetProfileImage());
-            // ProfileImage = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg"));
+            byte[] data = await OrleansClient.User.GetProfileImage();
+            if (data == null)
+            {
+                ProfileImage = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg"));
+            }
+            else
+            {
+                ProfileImage = await ImageToBytesConverter.ToImage(data);
+            }
+
+            Login = OrleansClient.Login;
+            Name = await OrleansClient.User.GetName();
+
+            OrleansClient.User.SetDescription("19 y.o. software developer.");
+            Description = await OrleansClient.User.GetDescription();
         }
     }
 }

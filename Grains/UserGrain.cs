@@ -17,7 +17,13 @@ namespace Grains
 
         public Task<bool> CheckPassword(string password) => Task.FromResult(password == this.State.Password);
 
-        public Task<string> GetDescription() => Task.FromResult(this.State.ProfileDescription);
+        public Task<string> GetDescription() => Task.FromResult(this.State.Description);
+
+        public async Task SetDescription(string description)
+        {
+            this.State.Description = description;
+            await this.WriteStateAsync();
+        }
 
         public Task<IEnumerable<string>> GetChats() => Task.FromResult<IEnumerable<string>>(this.State.Chats);
 
@@ -69,7 +75,7 @@ namespace Grains
 
         public string Password { get; set; }
 
-        public string ProfileDescription { get; set; }
+        public string Description { get; set; }
 
         public byte[] ProfileImage { get; set; }
 
