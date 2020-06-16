@@ -25,7 +25,7 @@
                           Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
             <winui:NavigationViewItem x:Uid="Shell_Main" Content="Profile" Icon="Contact" helpers:NavHelper.NavigateTo="views:ProfilePage" />
-            <winui:NavigationViewItem Content="Friends" Icon="ContactInfo" helpers:NavHelper.NavigateTo="views:MasterDetailPage"/>
+            <winui:NavigationViewItem Content="Friends" Icon="ContactInfo" helpers:NavHelper.NavigateTo="views:FriendsPage"/>
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="ItemInvoked">

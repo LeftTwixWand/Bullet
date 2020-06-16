@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="DesktopClient.Views.UsersControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DesktopClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ScrollViewer
+        Name="ForegroundElement"
+        HorizontalAlignment="Stretch"
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        VerticalScrollMode="Enabled">
+        <StackPanel>
+            <Image x:Name="myProfileImage" MinHeight="200" MinWidth="150" HorizontalAlignment="Center" MaxHeight="450" MaxWidth="400" Source="{x:Bind FriendUser.ProfilePicture, Mode=OneWay}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="nameTextBlock" Grid.Row="0" HorizontalAlignment="Center" Text="{x:Bind FriendUser.Name, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                <TextBlock Grid.Row="1" Text="{x:Bind FriendUser.Login, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                <TextBlock Grid.Row="2"  Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}" MaxWidth="200" />
+                <TextBlock x:Name="descriptionTextBlock" Grid.Row="3" TextAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind FriendUser.Description, Mode=OneWay}"/>
+            </Grid>
+        </StackPanel>
+
+    </ScrollViewer>
+</UserControl>

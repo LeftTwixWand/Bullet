@@ -18,24 +18,24 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DesktopClient.Views
 {
-    public sealed partial class MasterDetailDetailControl : UserControl
+    public sealed partial class UsersControl : UserControl
     {
-        public SampleOrder FriendUser
+        public User FriendUser
         {
-            get { return GetValue(FriendUserProperty) as SampleOrder; }
+            get { return GetValue(FriendUserProperty) as User; }
             set { SetValue(FriendUserProperty, value); }
         }
 
-        public static readonly DependencyProperty FriendUserProperty = DependencyProperty.Register("FriendUser", typeof(SampleOrder), typeof(MasterDetailDetailControl), new PropertyMetadata(null, OnFriendUserPropertyChanged));
+        public static readonly DependencyProperty FriendUserProperty = DependencyProperty.Register("FriendUser", typeof(User), typeof(UsersControl), new PropertyMetadata(null, OnFriendUserPropertyChanged));
 
-        public MasterDetailDetailControl()
+        public UsersControl()
         {
             InitializeComponent();
         }
 
         private static void OnFriendUserPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as MasterDetailDetailControl;
+            var control = d as UsersControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
         }
     }

@@ -13,19 +13,19 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace DesktopClient.ViewModels
 {
-    public class MasterDetailViewModel : Observable
+    public class FriendsViewModel : Observable
     {
-        private SampleOrder _selected;
+        private User _selected;
 
-        public SampleOrder Selected
+        public User Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<User> SampleItems { get; private set; } = new ObservableCollection<User>();
 
-        public MasterDetailViewModel()
+        public FriendsViewModel()
         {
         }
 
@@ -47,7 +47,7 @@ namespace DesktopClient.ViewModels
             {
                 OrleansClient.InitializeOtherUser(item);
 
-                SampleItems.Add(new SampleOrder(await OrleansClient.OtherUser.GetName(), item, await ImageToBytesConverter.ToImage(await OrleansClient.OtherUser.GetProfileImage())));
+                SampleItems.Add(new User(await OrleansClient.OtherUser.GetName(), item, await ImageToBytesConverter.ToImage(await OrleansClient.OtherUser.GetProfileImage()), await OrleansClient.OtherUser.GetDescription()));
             }
 
             if (viewState == MasterDetailsViewState.Both)

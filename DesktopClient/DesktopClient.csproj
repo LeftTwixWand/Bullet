@@ -135,7 +135,7 @@
     <Compile Include="Services\OrleansClient.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
-    <Compile Include="ViewModels\MasterDetailViewModel.cs" />
+    <Compile Include="ViewModels\FriendsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -145,11 +145,11 @@
     <Compile Include="Views\GradientPage.xaml.cs">
       <DependentUpon>GradientPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailDetailControl.xaml.cs">
-      <DependentUpon>MasterDetailDetailControl.xaml</DependentUpon>
+    <Compile Include="Views\UsersControl.xaml.cs">
+      <DependentUpon>UsersControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailPage.xaml.cs">
-      <DependentUpon>MasterDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\FriendsPage.xaml.cs">
+      <DependentUpon>FriendsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -230,11 +230,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MasterDetailDetailControl.xaml">
+    <Page Include="Views\UsersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MasterDetailPage.xaml">
+    <Page Include="Views\FriendsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

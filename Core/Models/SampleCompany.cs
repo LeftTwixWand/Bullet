@@ -26,6 +26,6 @@ namespace Core.Models
 
         public string Fax { get; set; }
 
-        public ICollection<SampleOrder> Orders { get; set; }
+        public ICollection<User> Orders { get; set; }
     }
 }
