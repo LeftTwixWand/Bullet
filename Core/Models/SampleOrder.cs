@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.UI.Xaml.Media;
 
 namespace Core.Models
 {
@@ -31,6 +32,12 @@ namespace Core.Models
         public char Symbol => (char)SymbolCode;
 
         public int SymbolCode { get; set; }
+
+        public string Name { get; set; }
+
+        public string Login { get; set; }
+        
+        public ImageSource ProfilePicture { get; set; }
 
         public ICollection<SampleOrderDetail> Details { get; set; }
 

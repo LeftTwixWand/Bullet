@@ -18,22 +18,22 @@
     </Page.Transitions>
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
-            <Grid Height="60">
+            <Grid Height="75">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <FontIcon
+                <PersonPicture
                     Grid.Column="0"
+                    Height="65" 
                     VerticalAlignment="Center"
-                    FontSize="32"
-                    Glyph="{x:Bind Symbol}" />
+                    ProfilePicture="{x:Bind ProfilePicture}" />
                 <StackPanel
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center">
-                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Company}" />
-                    <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind Status}" />
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind Name}" />
+                    <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind Login}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>

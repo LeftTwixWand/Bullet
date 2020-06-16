@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Core.Services
 {
@@ -50,6 +51,9 @@ namespace Core.Services
                             OrderTotal = 814.50,
                             Status = "Shipped",
                             SymbolCode = 57643,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -104,6 +108,9 @@ namespace Core.Services
                             OrderTotal = 845.80,
                             Status = "Closed",
                             SymbolCode = 57737,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -146,6 +153,9 @@ namespace Core.Services
                             OrderTotal = 471.20,
                             Status = "Closed",
                             SymbolCode = 57699,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -204,6 +214,9 @@ namespace Core.Services
                             OrderTotal = 469.75,
                             Status = "Shipped",
                             SymbolCode = 57620,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -258,6 +271,9 @@ namespace Core.Services
                             OrderTotal = 507.20,
                             Status = "Shipped",
                             SymbolCode = 57633,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -340,6 +356,9 @@ namespace Core.Services
                             OrderTotal = 978.50,
                             Status = "Closed",
                             SymbolCode = 57661,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -382,6 +401,9 @@ namespace Core.Services
                             OrderTotal = 2082.00,
                             Status = "Closed",
                             SymbolCode = 57619,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
@@ -436,6 +458,9 @@ namespace Core.Services
                             OrderTotal = 375.50,
                             Status = "Closed",
                             SymbolCode = 57615,
+                            Name = "MyName",
+                            Login = "MyLogin",
+                            ProfilePicture = new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg")),
                             Details = new List<SampleOrderDetail>()
                             {
                                 new SampleOrderDetail()
