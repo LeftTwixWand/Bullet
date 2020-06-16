@@ -20,20 +20,20 @@ namespace DesktopClient.Views
 {
     public sealed partial class MasterDetailDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public SampleOrder FriendUser
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
-            set { SetValue(MasterMenuItemProperty, value); }
+            get { return GetValue(FriendUserProperty) as SampleOrder; }
+            set { SetValue(FriendUserProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(MasterDetailDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty FriendUserProperty = DependencyProperty.Register("FriendUser", typeof(SampleOrder), typeof(MasterDetailDetailControl), new PropertyMetadata(null, OnFriendUserPropertyChanged));
 
         public MasterDetailDetailControl()
         {
             InitializeComponent();
         }
 
-        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnFriendUserPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as MasterDetailDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);

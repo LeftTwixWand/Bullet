@@ -22,6 +22,8 @@ namespace Interfaces
         /// <returns>Byte array</returns>
         Task<byte[]> GetProfileImage();
 
+        Task AddFriend(string login);
+
         Task SetProfileImage(byte[] data);
 
         Task<string> GetDescription();
@@ -31,6 +33,8 @@ namespace Interfaces
         Task<bool> SetPassword(string newPassword, string oldPassword);
 
         Task<bool> Register(string name, string password);
+
+        Task AddChat(string id);
 
         // Task<IEnumerable<byte[]>> GetAvatars();
 

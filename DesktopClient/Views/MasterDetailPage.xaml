@@ -40,7 +40,7 @@
 
         <DataTemplate x:Key="DetailsTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <views:MasterDetailDetailControl MasterMenuItem="{Binding}" />
+                <views:MasterDetailDetailControl FriendUser="{Binding}" />
             </Grid>
         </DataTemplate>
 

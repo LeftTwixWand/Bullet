@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,7 +34,8 @@ namespace DesktopClient.Helpers
             }
             else
             {
-                throw new Exception("Byte array is empty!");
+                Debug.WriteLine("Byte array is empty!");
+                return new BitmapImage(new Uri("ms-appx:///Assets/Unknown.jpg"));
             }
         }
     }

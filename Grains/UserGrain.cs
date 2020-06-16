@@ -67,6 +67,24 @@ namespace Grains
 
             return false;
         }
+
+        public async Task AddFriend(string login)
+        {
+            if (!this.State.Friends.Contains(login))
+            {
+                this.State.Friends.Add(login);
+                await this.WriteStateAsync();
+            }
+        }
+
+        public async Task AddChat(string id)
+        {
+            if (!this.State.Chats.Contains(id))
+            {
+                this.State.Chats.Add(id);
+                await this.WriteStateAsync();
+            }
+        }
     }
 
     public class UserArchive

@@ -7,6 +7,17 @@ namespace Core.Models
 {
     public class SampleOrder
     {
+        public SampleOrder()
+        {
+        }
+
+        public SampleOrder(string name, string login, ImageSource profilePicture)
+        {
+            Name = name;
+            Login = login;
+            ProfilePicture = profilePicture;
+        }
+
         public long OrderID { get; set; }
 
         public DateTime OrderDate { get; set; }

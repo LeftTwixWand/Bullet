@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using Core.Services;
 using DesktopClient.Helpers;
+using DesktopClient.Services;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace DesktopClient.ViewModels
 {
@@ -31,11 +33,21 @@ namespace DesktopClient.ViewModels
         {
             SampleItems.Clear();
 
-            var data = await SampleDataService.GetMasterDetailDataAsync();
+            //var data = await SampleDataService.GetMasterDetailDataAsync();
 
-            foreach (var item in data)
+            //foreach (var item in data)
+            //{
+            //    SampleItems.Add(item);
+            //}
+
+            //await OrleansClient.User.AddFriend("LeftTwixWand");
+            //await OrleansClient.User.AddFriend("eeeeee");
+
+            foreach (var item in await OrleansClient.User.GetFriends())
             {
-                SampleItems.Add(item);
+                OrleansClient.InitializeOtherUser(item);
+
+                SampleItems.Add(new SampleOrder(await OrleansClient.OtherUser.GetName(), item, await ImageToBytesConverter.ToImage(await OrleansClient.OtherUser.GetProfileImage())));
             }
 
             if (viewState == MasterDetailsViewState.Both)
