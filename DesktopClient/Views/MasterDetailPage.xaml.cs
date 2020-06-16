@@ -21,20 +21,19 @@ namespace DesktopClient.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class FriendsPage : Page
+    public sealed partial class MasterDetailPage : Page
     {
-        public ContentGridViewModel ViewModel { get; } = new ContentGridViewModel();
+        public MasterDetailViewModel ViewModel { get; } = new MasterDetailViewModel();
 
-        public FriendsPage()
+        public MasterDetailPage()
         {
             this.InitializeComponent();
+            Loaded += MasterDetailPage_Loaded;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private async void MasterDetailPage_Loaded(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
-            //await ViewModel.LoadDataAsync();
+            await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace Interfaces
     {
         Task<string> GetName();
 
+        Task<string> GetLogin();
+
         /// <summary>
         /// Returnes current profile picture for current user
         /// </summary>

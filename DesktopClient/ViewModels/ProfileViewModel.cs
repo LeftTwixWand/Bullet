@@ -126,8 +126,6 @@ namespace DesktopClient.ViewModels
 
             Login = OrleansClient.Login;
             Name = await OrleansClient.User.GetName();
-
-            OrleansClient.User.SetDescription("19 y.o. software developer.");
             Description = await OrleansClient.User.GetDescription();
         }
     }
