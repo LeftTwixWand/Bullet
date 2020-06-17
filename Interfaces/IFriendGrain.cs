@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace Interfaces
         Task<string> GetName();
 
         Task<string> GetLogin();
+
+        Task<IEnumerable<WallPost>> GetWall();
 
         /// <summary>
         /// Returnes current profile picture for current user

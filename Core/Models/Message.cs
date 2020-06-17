@@ -24,13 +24,13 @@ namespace Core.Models
             Text = text;
             MsgAlignment = alignment;
             DateTime = dateTime;
-            if (alignment == HorizontalAlignment.Left || alignment == HorizontalAlignment.Center)
+            if (alignment == HorizontalAlignment.Right || alignment == HorizontalAlignment.Center)
             {
                 BgColor = (SolidColorBrush)Application.Current.Resources["ContentDialogBorderThemeBrush"];
             }
             else
             {
-                BgColor = (SolidColorBrush)Application.Current.Resources["SystemControlBackgroundChromeMediumBrush"];
+                BgColor = (SolidColorBrush)Application.Current.Resources["ComboBoxItemSelectedPointerOverBackgroundThemeBrush"];
             }
         }
 

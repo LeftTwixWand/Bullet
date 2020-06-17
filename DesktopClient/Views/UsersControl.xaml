@@ -5,7 +5,19 @@
     xmlns:local="using:DesktopClient.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:models="using:Core.Models"
+    mc:Ignorable="d" 
+    Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="MessageViewTemplate" x:DataType="models:Message">
+            <Grid Height="Auto" Margin="4" HorizontalAlignment="{x:Bind MsgAlignment}">
+                <StackPanel MinHeight="75" Width="350" Padding="10, 0, 0, 10" Background="{x:Bind BgColor}" CornerRadius="4">
+                    <TextBlock Text="{x:Bind Text}" Padding="0, 10, 0, 0" FontSize="20" TextWrapping="Wrap" Foreground="{ThemeResource SystemControlForegroundAltHighBrush}"/>
+                    <TextBlock Text="{x:Bind DateTime}" Padding="0, 0, 0, 10" FontSize="13" Foreground="{ThemeResource SystemControlForegroundAltMediumHighBrush}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <ScrollViewer
         Name="ForegroundElement"
         HorizontalAlignment="Stretch"
@@ -25,6 +37,32 @@
                 <TextBlock Grid.Row="2"  Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}" MaxWidth="200" />
                 <TextBlock x:Name="descriptionTextBlock" Grid.Row="3" TextAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind FriendUser.Description, Mode=OneWay}"/>
             </Grid>
+
+            <StackPanel>
+                <TextBlock Height="50" Text="Сообщения" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"/>
+                <ListView
+                    MaxHeight="700"
+                    x:Name="InvertedListView"
+                    ItemTemplate="{StaticResource MessageViewTemplate}"
+                    SelectionMode="None">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" 
+                              VerticalAlignment="Bottom"/>
+
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                </ListView>
+                <TextBox x:Name="messageTextBox" KeyDown="messageTextBox_KeyDown" Height="47"/>
+            </StackPanel>
         </StackPanel>
 
     </ScrollViewer>

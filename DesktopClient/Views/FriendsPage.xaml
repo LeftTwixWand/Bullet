@@ -10,7 +10,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:model="using:Core.Models"
     xmlns:views="using:DesktopClient.Views"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
+    
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />

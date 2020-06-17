@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using DesktopClient.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +38,28 @@ namespace DesktopClient.Views
         {
             var control = d as UsersControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
+        }
+
+        private async void messageTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Message message = new Message(await OrleansClient.User.GetLogin(), messageTextBox.Text, HorizontalAlignment.Right, DateTime.Now);
+                InvertedListView.Items.Add(message);
+                messageTextBox.Text = string.Empty;
+            }
+            if (e.Key == Windows.System.VirtualKey.NumberPad0)
+            {
+                Message message = new Message(await OrleansClient.OtherUser.GetLogin(), "Привет", HorizontalAlignment.Left, DateTime.Now);
+                InvertedListView.Items.Add(message);
+                messageTextBox.Text = string.Empty;
+            }
+            if (e.Key == Windows.System.VirtualKey.NumberPad1)
+            {
+                Message message = new Message(await OrleansClient.OtherUser.GetLogin(), "Как дела?", HorizontalAlignment.Left, DateTime.Now);
+                InvertedListView.Items.Add(message);
+                messageTextBox.Text = string.Empty;
+            }
         }
     }
 }

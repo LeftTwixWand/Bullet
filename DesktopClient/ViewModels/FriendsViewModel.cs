@@ -47,7 +47,7 @@ namespace DesktopClient.ViewModels
             {
                 OrleansClient.InitializeOtherUser(item);
 
-                SampleItems.Add(new User(await OrleansClient.OtherUser.GetName(), item, await ImageToBytesConverter.ToImage(await OrleansClient.OtherUser.GetProfileImage()), await OrleansClient.OtherUser.GetDescription()));
+                SampleItems.Add(new User(await OrleansClient.OtherUser.GetName(), item, await ImageToBytesConverter.ToImage(await OrleansClient.OtherUser.GetProfileImage()), await OrleansClient.OtherUser.GetDescription(), await OrleansClient.OtherUser.GetWall()));
             }
 
             if (viewState == MasterDetailsViewState.Both)

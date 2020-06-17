@@ -79,8 +79,8 @@
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel 
-                                ItemsUpdatingScrollMode="KeepItemsInView" 
-                                VerticalAlignment="Bottom"/>
+                                ItemsUpdatingScrollMode="KeepLastItemInView" 
+                                VerticalAlignment="Top"/>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
 
