@@ -1,6 +1,7 @@
 ﻿using Core.Models;
 using DesktopClient.Services;
 using DesktopClient.ViewModels;
+using System;
 using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,6 +24,16 @@ namespace DesktopClient.Views
             this.InitializeComponent();
             this.DataContext = ViewModel;
             ViewModel.Initialize();
+            LoadWallAsync();
+        }
+
+        private async void LoadWallAsync()
+        {
+            InvertedListView.Items.Clear();
+            foreach (var item in await OrleansClient.User.GetWall())
+            {
+                InvertedListView.Items.Add(new Message(OrleansClient.Login, item.Text, HorizontalAlignment.Center, item.DateTime));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -110,7 +121,8 @@ namespace DesktopClient.Views
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                Message message = new Message(OrleansClient.Login, messageTextBox.Text, HorizontalAlignment.Center);
+                Message message = new Message(OrleansClient.Login, messageTextBox.Text, HorizontalAlignment.Center, DateTime.Now);
+                OrleansClient.User.AddWallPost(new WallPost(message.Text, message.DateTime));
                 InvertedListView.Items.Add(message);
                 messageTextBox.Text = string.Empty;
             }

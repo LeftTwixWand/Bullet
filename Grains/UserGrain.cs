@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Interfaces;
 using System.Threading.Tasks;
 using Orleans.Providers;
+using Core.Models;
 
 namespace Grains
 {
@@ -85,6 +86,14 @@ namespace Grains
                 await this.WriteStateAsync();
             }
         }
+
+        public Task<IEnumerable<WallPost>> GetWall() => Task.FromResult<IEnumerable<WallPost>>(this.State.Wall);
+
+        public async Task AddWallPost(WallPost post)
+        {
+            this.State.Wall.Add(post);
+            await this.WriteStateAsync();
+        }
     }
 
     public class UserArchive
@@ -100,5 +109,7 @@ namespace Grains
         public List<string> Friends { get; } = new List<string>();
 
         public List<string> Chats { get; } = new List<string>();
+
+        public List<WallPost> Wall { get; } = new List<WallPost>();
     }
 }

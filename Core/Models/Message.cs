@@ -18,15 +18,15 @@ namespace Core.Models
 
         public SolidColorBrush BgColor { get; set; }
     
-        public Message(string sender, string text, HorizontalAlignment alignment)
+        public Message(string sender, string text, HorizontalAlignment alignment, DateTime dateTime)
         {
             Sender = sender;
             Text = text;
             MsgAlignment = alignment;
-            DateTime = DateTime.Now;
+            DateTime = dateTime;
             if (alignment == HorizontalAlignment.Left || alignment == HorizontalAlignment.Center)
             {
-                BgColor = (SolidColorBrush)Application.Current.Resources["SystemControlBackgroundChromeMediumBrush"];
+                BgColor = (SolidColorBrush)Application.Current.Resources["ContentDialogBorderThemeBrush"];
             }
             else
             {

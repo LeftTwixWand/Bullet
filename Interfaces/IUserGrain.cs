@@ -42,9 +42,9 @@ namespace Interfaces
         // Task<IEnumerable<IChatGrain>> GetChats();
         Task<IEnumerable<string>> GetChats();
 
-        Task<IEnumerable<Message>> GetWall();
+        Task<IEnumerable<WallPost>> GetWall();
 
-        Task AddWallPost(Message message);
+        Task AddWallPost(WallPost post);
 
         //Task<IEnumerable<IUserGrain>> GetFriends(); 
         Task<IEnumerable<string>> GetFriends();
