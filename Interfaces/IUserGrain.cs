@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Interfaces
@@ -40,6 +41,10 @@ namespace Interfaces
 
         // Task<IEnumerable<IChatGrain>> GetChats();
         Task<IEnumerable<string>> GetChats();
+
+        Task<IEnumerable<Message>> GetWall();
+
+        Task AddWallPost(Message message);
 
         //Task<IEnumerable<IUserGrain>> GetFriends(); 
         Task<IEnumerable<string>> GetFriends();

@@ -1,4 +1,6 @@
-﻿using DesktopClient.ViewModels;
+﻿using Core.Models;
+using DesktopClient.Services;
+using DesktopClient.ViewModels;
 using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -72,6 +74,46 @@ namespace DesktopClient.Views
         private void DescriptionButton_ContentRequested(UIElement sender, ContextRequestedEventArgs args)
         {
             ShowDescriptionMenu(false);
+        }
+
+        private void DescriptionAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (descriptionTextBlock.Visibility == Visibility.Visible)
+            {
+                descriptionTextBox.Visibility = Visibility.Visible;
+                descriptionTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                descriptionTextBox.Visibility = Visibility.Collapsed;
+                descriptionTextBlock.Visibility = Visibility.Visible;
+                OrleansClient.User.SetDescription(ViewModel.Description);
+            }
+        }
+
+        private void NameAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (nameTextBlock.Visibility == Visibility.Visible)
+            {
+                nameTextBox.Visibility = Visibility.Visible;
+                nameTextBlock.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                nameTextBox.Visibility = Visibility.Collapsed;
+                nameTextBlock.Visibility = Visibility.Visible;
+                OrleansClient.User.SetName(ViewModel.Name);
+            }
+        }
+
+        private void messageTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                Message message = new Message(OrleansClient.Login, messageTextBox.Text, HorizontalAlignment.Center);
+                InvertedListView.Items.Add(message);
+                messageTextBox.Text = string.Empty;
+            }
         }
     }
 }

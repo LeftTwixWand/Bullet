@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
+    xmlns:models="using:Core.Models"
     Style="{StaticResource PageStyle}"
     Background="{ThemeResource SystemControlAltMediumLowAcrylicWindowMediumBrush}">
 
@@ -16,11 +17,20 @@
             <AppBarButton Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" Command="{x:Bind ViewModel.DeleteImageCommand}" />
         </muxc:CommandBarFlyout>
         <muxc:CommandBarFlyout Placement="Right" x:Name="EditNameBarFlyout">
-            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" />
+            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" Click="NameAppBarButton_Click"/>
         </muxc:CommandBarFlyout>
         <muxc:CommandBarFlyout Placement="Right" x:Name="EditDescriptionBarFlyout">
-            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" />
+            <AppBarButton Label="Edit" Icon="Edit" ToolTipService.ToolTip="Edit" Click="DescriptionAppBarButton_Click"/>
         </muxc:CommandBarFlyout>
+
+        <DataTemplate x:Key="MessageViewTemplate" x:DataType="models:Message">
+            <Grid Height="Auto" Margin="4" HorizontalAlignment="{x:Bind MsgAlignment}">
+                <StackPanel MinHeight="75" Width="350" Padding="10, 0, 0, 10" Background="{x:Bind BgColor}" CornerRadius="4">
+                    <TextBlock Text="{x:Bind Text}" Padding="0, 10, 0, 0" FontSize="20" TextWrapping="Wrap" Foreground="{ThemeResource SystemControlForegroundAltHighBrush}"/>
+                    <TextBlock Text="{x:Bind DateTime}" Padding="0, 0, 0, 10" FontSize="13" Foreground="{ThemeResource SystemControlForegroundAltMediumHighBrush}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
 
@@ -42,16 +52,47 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Button Grid.Row="0" HorizontalAlignment="Center" Background="Transparent" Click="NameButton_Click" ContextRequested="NameButton_ContentRequested">
-                        <TextBlock x:Name="nameTextBlock" Text="{x:Bind ViewModel.Name, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                        <StackPanel>
+                            <TextBlock x:Name="nameTextBlock" Text="{x:Bind ViewModel.Name, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                            <TextBox x:Name="nameTextBox" TextWrapping="Wrap" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" TextAlignment="Center" Visibility="Collapsed" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                        </StackPanel>
                     </Button>
                     <TextBlock Grid.Row="1" Text="{x:Bind ViewModel.Login, Mode=OneWay}" TextAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
                     <TextBlock Grid.Row="2"  Text="Информация о себе:" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"  Margin="{StaticResource XSmallTopMargin}" Style="{ThemeResource BodyTextBlockStyle}" />
                     <Button Grid.Row="3" HorizontalAlignment="Center" Click="DescriptionButton_Click" ContextRequested="DescriptionButton_ContentRequested" Background="Transparent">
-                        <TextBlock x:Name="descriptionTextBlock" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Description, Mode=OneWay}"/>
+                        <StackPanel>
+                            <TextBlock x:Name="descriptionTextBlock" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Description, Mode=OneWay}"/>
+                            <TextBox x:Name="descriptionTextBox"  TextWrapping="Wrap" Text="{x:Bind ViewModel.Description, Mode=TwoWay}" TextAlignment="Center" Visibility="Collapsed" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                        </StackPanel>
                     </Button>
                     <!--<TextBox Grid.Row="3" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind ViewModel.Description, Mode=TwoWay}" Visibility=""/>-->
                 </Grid>
             </StackPanel>
-        </Grid>
+            <StackPanel Grid.Column="1">
+                <TextBlock Height="50" Text="Записи" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30"/>
+                <TextBox x:Name="messageTextBox" KeyDown="messageTextBox_KeyDown" Height="47"/>
+                <ListView
+                    x:Name="InvertedListView"
+                    ItemTemplate="{StaticResource MessageViewTemplate}"
+                    SelectionMode="None">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel 
+                                ItemsUpdatingScrollMode="KeepItemsInView" 
+                                VerticalAlignment="Bottom"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                </ListView>
+            </StackPanel>    
+
+            </Grid>
     </ScrollViewer>
 </Page>
